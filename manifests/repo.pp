@@ -47,10 +47,10 @@ class ossec::repo (
         default: { fail('This ossec module has not been tested on your distribution (or lsb package not installed)') }
       }
     }
-    'Redhat', 'RedHat' : {
+    'Redhat','RedHat' : {
       if ( $::operatingsystem == 'Amazon' ) {
         yumrepo { 'ossec':
-          descr    => 'WAZUH OSSEC Repository - www.wazuh.com',
+          descr    => 'WAZUH OSSEC Repository - www.wazuh.com # Amazon Linux',
           enabled  => true,
           gpgcheck => 1,
           gpgkey   => 'http://ossec.wazuh.com/key/RPM-GPG-KEY-OSSEC',
@@ -61,7 +61,7 @@ class ossec::repo (
       } elsif $operatingsystemrelease =~ /^5.*/ {
         # Set up OSSEC repo
         yumrepo { 'ossec':
-          descr    => 'WAZUH OSSEC Repository - www.wazuh.com',
+          descr    => 'WAZUH OSSEC Repository - www.wazuh.com # RHEL5',
           enabled  => true,
           gpgcheck => 1,
           gpgkey   => 'http://ossec.wazuh.com/key/RPM-GPG-KEY-OSSEC-RHEL5',
@@ -73,7 +73,7 @@ class ossec::repo (
       else {
         # Set up OSSEC repo
         yumrepo { 'ossec':
-          descr    => 'WAZUH OSSEC Repository - www.wazuh.com',
+          descr    => 'WAZUH OSSEC Repository - www.wazuh.com # RHEL > 5',
           enabled  => true,
           gpgkey   => 'http://ossec.wazuh.com/key/RPM-GPG-KEY-OSSEC',
           baseurl  => 'http://ossec.wazuh.com/el/$releasever/$basearch',
