@@ -26,7 +26,9 @@
 
   <!-- Included rules (static) -->
   <rules>
+<% if @ossec_install_wazuh_rules == false then -%>
     <decoder>etc/decoder.xml</decoder>
+<% end -%>
     <decoder>etc/local_decoder.xml</decoder>
     <include>rules_config.xml</include>
     <include>pam_rules.xml</include>
