@@ -26,10 +26,11 @@
 
   <!-- Included rules (static) -->
   <rules>
-<% if @ossec_install_wazuh_rules == false then -%>
+<% if @ossec_install_wazuh_rules then -%>
+    <decoder_dir>etc/wazuh_decoders</decoder_dir>
+<% else -%>
     <decoder>etc/decoder.xml</decoder>
 <% end -%>
-    <decoder>etc/local_decoder.xml</decoder>
     <include>rules_config.xml</include>
     <include>pam_rules.xml</include>
     <include>sshd_rules.xml</include>
@@ -89,6 +90,7 @@
     <% @ossec_extra_rules_config.each do |rule_config| -%>
     <%= rule_config %>
 <% end -%>
+    <decoder>etc/local_decoder.xml</decoder>
     <include>local_rules.xml</include>
   </rules>
 
