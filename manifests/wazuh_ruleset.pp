@@ -10,12 +10,11 @@ class ossec::wazuh_ruleset {
   file { '/var/ossec/update/ruleset':
     ensure => directory
   } ->
-  wget::fetch { 'https://raw.githubusercontent.com/wazuh/ossec-rules/stable/ossec_ruleset.py':
-    destination => '/var/ossec/update/ruleset/',
-    cache_dir   => '/var/cache/wget',
-    mode        => '0755',
-    verbose     => false,
-    notify      => Exec['get ossec_ruleset']
+  exec { 'wget https://raw.githubusercontent.com/wazuh/ossec-rules/stable/ossec_ruleset.py':
+    user    => 'root',
+    cwd     => '/var/ossec/update/ruleset/',
+    creates => '/var/ossec/update/ruleset/ossec_ruleset.py',
+    notify  => Exec['get ossec_ruleset']
   }
 
   exec { 'get ossec_ruleset':
