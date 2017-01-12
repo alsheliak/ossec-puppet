@@ -10,7 +10,7 @@ class ossec::wazuh_ruleset {
   file { '/var/ossec/update/ruleset':
     ensure => directory
   } ->
-  exec { 'wget https://raw.githubusercontent.com/wazuh/ossec-rules/stable/ossec_ruleset.py':
+  exec { 'wget https://raw.githubusercontent.com/wazuh/ossec-rules/stable/ossec_ruleset.py && chmod 700 /var/ossec/update/ruleset/ossec_ruleset.py':
     user    => 'root',
     cwd     => '/var/ossec/update/ruleset/',
     creates => '/var/ossec/update/ruleset/ossec_ruleset.py',
